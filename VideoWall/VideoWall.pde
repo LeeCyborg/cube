@@ -2,14 +2,15 @@ import processing.video.*;
 Movie[] movie;
 int index = 0;
 Video[] plays;
-int size;
+int sizew;
+int sizeh;
 boolean first = true;
 String[] titles = {"transit.mov", 
   "transit.mov", 
   "transit.mov", 
   "transit.mov"};
 void setup() {
-  size(1920, 1080);
+  size(1920, 1080);  
   findSize(titles.length);
   movie = new Movie[titles.length];
   plays = new Video[1];
@@ -25,9 +26,9 @@ void movieEvent(Movie m) {
   m.read();
 }
 void draw() {
-  for (int h = 0; h < width; h += size) {
-    for (int v = 0; v < height; v += size) { 
-      image(movie[index], h, v, size, size);
+  for (int h = 0; h < width; h += sizew) {
+    for (int v = 0; v < height; v += sizeh) { 
+      image(movie[index], h, v, sizew, sizeh);
       index++;
     }
   }
@@ -67,16 +68,20 @@ void playNext() {
 }
 void findSize(int videos) {
   if (videos == 1) { 
-    size = width;
+    sizew = width;
+    sizeh = height;
   }
   if (videos == 4) { 
-    size = width/2;
+    sizew = width/2;
+    sizeh = height/2;
   }
   if (videos == 16) { 
-    size = width/4;
+    sizew = width/4;
+    sizeh= height/4;
   }
-  if (videos == 16) { 
-    size = width/8;
+  if (videos == 36) { 
+    sizew = width/6;
+    sizeh = width/6;
   }
 }
 public class Video {
